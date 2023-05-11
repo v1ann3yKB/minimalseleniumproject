@@ -22,16 +22,14 @@ import org.testng.annotations.*;
  * So this has to be changed accordingly
  */
 public class LoginSeleniumIDETest {
+	//IMPORTANT: Please download a Chrome driver and set this variable to the full path to the file
+	private final static String CHROME_DRIVER_FULL_PATH = "/Users/leonardolanni/Downloads/chromedriver_113_m1";
 	private WebDriver driver;
-	private Map<String, Object> vars;
-	JavascriptExecutor js;
 
 	@BeforeTest
 	public void setUp() {
-		System.setProperty("webdriver.chrome.driver", "/Users/leonardolanni/Downloads/chromedriver_113_m1");
+		System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_FULL_PATH);
 		driver = new ChromeDriver();
-		js = (JavascriptExecutor) driver;
-		vars = new HashMap<String, Object>();
 
 	}
 
@@ -42,28 +40,21 @@ public class LoginSeleniumIDETest {
 
 	@Test
 	public void login() {
-		System.out.println("0. Conf - vars os empty: " + vars.isEmpty());
-		System.out.println("1. Start - Open target page");
+		System.out.println("0. Start");
+		
+		System.out.println("1. Open target page");
 		driver.get("https://www.saucedemo.com/");
 		driver.manage().window().setSize(new Dimension(1350, 637));
 		
 		System.out.println("2. Insert username and password");
+		
+		System.out.println(" 2.1 Insert username");
 		driver.findElement(By.id("login_credentials")).click();
-		driver.findElement(By.id("login_credentials")).click();
-		{
-			WebElement element = driver.findElement(By.id("login_credentials"));
-			Actions builder = new Actions(driver);
-			builder.doubleClick(element).perform();
-		}
 		driver.findElement(By.cssSelector("*[data-test=\"username\"]")).click();
 		driver.findElement(By.cssSelector("*[data-test=\"username\"]")).sendKeys("standard_user");
+		
+		System.out.println(" 2.1 Insert password");
 		driver.findElement(By.cssSelector(".login_password")).click();
-		driver.findElement(By.cssSelector(".login_password")).click();
-		{
-			WebElement element = driver.findElement(By.cssSelector(".login_password"));
-			Actions builder = new Actions(driver);
-			builder.doubleClick(element).perform();
-		}
 		driver.findElement(By.cssSelector("*[data-test=\"password\"]")).click();
 		driver.findElement(By.cssSelector("*[data-test=\"password\"]")).sendKeys("secret_sauce");
 		
