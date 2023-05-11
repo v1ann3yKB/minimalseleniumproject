@@ -1,15 +1,11 @@
 package tests;
 
-import java.util.HashMap;
-import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -24,13 +20,15 @@ import org.testng.annotations.*;
 public class LoginBasicTest {
 	//IMPORTANT: Please download a Chrome driver and set this variable to the full path to the file
 	private final static String CHROME_DRIVER_FULL_PATH = "/Users/leonardolanni/Downloads/chromedriver_113_m1";
+	//private final static String GECKO_DRIVER_FULL_PATH = "/Users/leonardolanni/Downloads/geckodriver";
 	private WebDriver driver;
 
 	@BeforeTest
 	public void setUp() {
 		System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_FULL_PATH);
 		driver = new ChromeDriver();
-
+		//System.setProperty("webdriver.gecko.driver", GECKO_DRIVER_FULL_PATH);
+		//driver = new FirefoxDriver();
 	}
 
 	@AfterTest
