@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>leonardolanni.qa</groupId>
-    <artifactId>baseseleniumpomproject</artifactId>
+    <artifactId>minimalseleniumproject</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <repositories>
@@ -27,11 +27,6 @@
             <artifactId>selenium-chrome-driver</artifactId>
             <version>3.14.0</version>
         </dependency>
-        <dependency>
-            <groupId>org.jsoup</groupId>
-            <artifactId>jsoup</artifactId>
-            <version>1.8.3</version>
-        </dependency>
 		<dependency>
    			<groupId>org.testng</groupId>
     		<artifactId>testng</artifactId>
@@ -44,95 +39,13 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>properties-maven-plugin</artifactId>
-                <version>1.0.0</version>
-                <executions>
-                    <execution>
-                        <id>generate-resources</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>write-project-properties</goal>
-                        </goals>
-                        <configuration>
-                            <outputFile>${project.basedir}/src/resources/props.properties</outputFile>
-                        </configuration>
-                    </execution>
-                    <!--
-                    <execution>
-                        <id>post-integration-test</id>
-                        <phase>post-integration-test</phase>
-                        <goals>
-                            <goal>read-project-properties</goal>
-                        </goals>
-                        <configuration>
-                            <files>
-                            <file>${project.basedir}/src/resources/props.properties</file>
-                            </files>
-                        </configuration>
-                    </execution>
-                    -->
-                </executions>
-            </plugin>
-            <plugin>
-        		<groupId>org.apache.maven.plugins</groupId>
-        		<artifactId>maven-surefire-plugin</artifactId>
-       			<version>3.1.0</version>
-        		<configuration>
-          			<suiteXmlFiles>
-					  		  	<suiteXmlFile>testng.xml</suiteXmlFile>
-          			</suiteXmlFiles>
-        		</configuration>
-      		</plugin>
         </plugins>
     </build>
 
     <properties>
-        <!-- Compiler source and target info -->
+		 <!-- Compiler source and target info -->
          <maven.compiler.source>19</maven.compiler.source> 
          <maven.compiler.target>19</maven.compiler.target>
-        <!-- Configuration -->
-
-        <!-- Selenium Chrome Driver path to executable. Adjust it to your actual location -->
-        <selenium.chrome.driver.executable.path>/Users/leonardolanni/Downloads/chromedriver_113_m1</selenium.chrome.driver.executable.path>
-        <selenium.chrome.driver.headless.mode>true</selenium.chrome.driver.headless.mode>
-        <page.wait.timeout.seconds>10</page.wait.timeout.seconds>
-       
-        <!-- #enable or disable mobile mode; if enabled, minimise the screen size to the following x-y values, otherwise max -->
-        <test.mobile.mode.enabled>false</test.mobile.mode.enabled>
-        <mobile.mode.x>400</mobile.mode.x>
-        <mobile.mode.y>900</mobile.mode.y>
-
-        <!-- Base url - ADD BASIC URL HERE e.g. https://beta.dreamingspanish.com/ -->
-        <homepage.url>http://localhost:3000/</homepage.url>
-
-        <!-- POM Locators - make sure for each property, you both mobile and desktop versions (locator way can be different) even if the values are the same-->
-        <!-- name convention: <pageName>.<locator>.<testingType>.<locatorType> -->
-        <!-- <testingType> = ( mobile | desktop ) -->
-        <!-- <locatorType> = ( id | xpath | css | name ) -->
-        <!-- POM Locators - Page 1 -->
-
-        <!-- POM Locators - LoginPage -->
-        <loginpage.usernameField.desktop.id>user-name</loginpage.usernameField.desktop.id>
-        <loginpage.passwordField.desktop.id>password</loginpage.passwordField.desktop.id>
-        <loginpage.submitButton.desktop.id>login-button</loginpage.submitButton.desktop.id>
-  
-        <!-- Other parameters -->
-
-        <!-- Test Cases parameters -->
-
-        <!-- Assertions -->
     </properties>
-    
-    <reporting>
-	<plugins>
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-surefire-report-plugin</artifactId>
-			<version>3.1.0</version>
-		</plugin>
-	</plugins>
-</reporting>
 
 </project>

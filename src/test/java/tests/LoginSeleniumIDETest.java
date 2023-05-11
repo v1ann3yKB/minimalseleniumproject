@@ -1,4 +1,4 @@
-package test.ui;
+package tests;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 /*
@@ -39,11 +40,14 @@ public class LoginSeleniumIDETest {
 		driver.quit();
 	}
 
-	@Test(groups = { "old" })
+	@Test
 	public void login() {
-		System.out.println("vars os empty: " + vars.isEmpty());
-		driver.get("http://localhost:3000/");
+		System.out.println("0. Conf - vars os empty: " + vars.isEmpty());
+		System.out.println("1. Start - Open target page");
+		driver.get("https://www.saucedemo.com/");
 		driver.manage().window().setSize(new Dimension(1350, 637));
+		
+		System.out.println("2. Insert username and password");
 		driver.findElement(By.id("login_credentials")).click();
 		driver.findElement(By.id("login_credentials")).click();
 		{
@@ -62,8 +66,17 @@ public class LoginSeleniumIDETest {
 		}
 		driver.findElement(By.cssSelector("*[data-test=\"password\"]")).click();
 		driver.findElement(By.cssSelector("*[data-test=\"password\"]")).sendKeys("secret_sauce");
+		
+		System.out.println("3. Click submit to perform login");
 		driver.findElement(By.cssSelector("*[data-test=\"login-button\"]")).click();
 
-		System.out.println("D3. Test 4 End");
+		System.out.println("4. Verify login has been successfully executed");
+		System.out.println(" 4.1 Page title is 'Swag Labs'");
+		Assert.assertEquals(driver.getTitle(), "Swag Labs");
+		
+		System.out.println(" 4.2 Page url contains 'inventory'");
+		Assert.assertEquals(driver.getCurrentUrl().contains("inventory"), true);
+		
+		System.out.println("5. End");
 	}
 }

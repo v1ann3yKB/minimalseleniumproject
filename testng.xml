@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="ParallelTestSuite" parallel="classes" thread-count="3">
-	<test name="Launch">
+<suite name="TestSuite">
+	<test name="Demo">
 		<classes>
-			<class name="test.ui.LoginTest" /> 
-			<class name="test.ui.SecondTest" /> 
-			<class name="test.ui.ThirdTest" /> 
+			<class name="tests.LoginSeleniumIDETest" /> 
 		</classes>	
 	</test>
 </suite> <!-- Suite -->
