@@ -21,7 +21,7 @@ import org.testng.annotations.*;
  * Adding in the setup the setting of the property "webdriver.chrome.driver" pointing to the absolute folder on my computer of the Chrome Web Driver.
  * So this has to be changed accordingly
  */
-public class LoginSeleniumIDETest {
+public class LoginBasicTest {
 	//IMPORTANT: Please download a Chrome driver and set this variable to the full path to the file
 	private final static String CHROME_DRIVER_FULL_PATH = "/Users/leonardolanni/Downloads/chromedriver_113_m1";
 	private WebDriver driver;
@@ -68,6 +68,13 @@ public class LoginSeleniumIDETest {
 		System.out.println(" 4.2 Page url contains 'inventory'");
 		Assert.assertEquals(driver.getCurrentUrl().contains("inventory"), true);
 		
+		//Pause the execution for 2 seconds to show the logged in page
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.out.println("5. End");
 	}
 }
