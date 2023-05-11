@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="4" total="7" passed="3" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2023-05-10T10:33:15 WEST" name="ParallelTestSuite" finished-at="2023-05-10T10:33:22 WEST" duration-ms="6849">
+    <groups>
+      <group name="e2e.ui">
+        <method signature="LoginTest.testLoginUser()[pri:0, instance:test.ui.LoginTest@52066604]" name="testLoginUser" class="test.ui.LoginTest"/>
+        <method signature="SecondTest.testXxx()[pri:0, instance:test.ui.SecondTest@c055c54]" name="testXxx" class="test.ui.SecondTest"/>
+        <method signature="ThirdTest.testBlaBla()[pri:0, instance:test.ui.ThirdTest@b6b1987]" name="testBlaBla" class="test.ui.ThirdTest"/>
+      </group> <!-- e2e.ui -->
+    </groups>
+    <test started-at="2023-05-10T10:33:15 WEST" name="Launch" finished-at="2023-05-10T10:33:22 WEST" duration-ms="6849">
+      <class name="test.ui.LoginTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:test.ui.LoginTest@52066604]" started-at="2023-05-10T10:33:15 WEST" name="setUp" finished-at="2023-05-10T10:33:15 WEST" duration-ms="5" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testLoginUser()[pri:0, instance:test.ui.LoginTest@52066604]" started-at="2023-05-10T10:33:15 WEST" name="testLoginUser" finished-at="2023-05-10T10:33:22 WEST" duration-ms="6833" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLoginUser -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:test.ui.LoginTest@52066604]" started-at="2023-05-10T10:33:22 WEST" name="tearDown" finished-at="2023-05-10T10:33:22 WEST" duration-ms="79" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- test.ui.LoginTest -->
+      <class name="test.ui.ThirdTest">
+        <test-method signature="testBlaBla()[pri:0, instance:test.ui.ThirdTest@b6b1987]" started-at="2023-05-10T10:33:15 WEST" name="testBlaBla" finished-at="2023-05-10T10:33:17 WEST" duration-ms="1838" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testBlaBla -->
+      </class> <!-- test.ui.ThirdTest -->
+      <class name="test.ui.SecondTest">
+        <test-method signature="testXxx()[pri:0, instance:test.ui.SecondTest@c055c54]" started-at="2023-05-10T10:33:15 WEST" name="testXxx" finished-at="2023-05-10T10:33:17 WEST" duration-ms="1838" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testXxx -->
+      </class> <!-- test.ui.SecondTest -->
+    </test> <!-- Launch -->
+  </suite> <!-- ParallelTestSuite -->
+</testng-results>

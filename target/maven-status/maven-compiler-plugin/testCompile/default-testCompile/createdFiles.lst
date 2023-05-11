@@ -1,0 +1,5 @@
+test/ui/LoginSeleniumIDETest.class
+test/ui/LoginTest.class
+test/ui/SecondTest.class
+test/ui/ThirdTest.class
+test/BaseTest.class
