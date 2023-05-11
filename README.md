@@ -3,7 +3,7 @@ This project (downloadable from git) is a very minimalistic Maven project to run
 https://www.saucedemo.com/
 
 The projects simply imports via Maven Selenium, Chrome Driver and TestNG, and it consists of a signle test case LoginBasicTest.java that executes a login using the WebDriver API and verify the expected result via TestNG assertion.
-The project is by purpose very simple to show a very basic setup to run Selenium automation.
+The project is by purpose very simple to show a very basic setup to run Selenium automation, the pom.xml is the required Maven file with the dependencies, and the testng.xml file is the file used by TestNG to configure the test cases.
 
 
 # 2. Prerequirements
