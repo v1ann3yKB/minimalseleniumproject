@@ -1,11 +1,16 @@
 package tests;
 
+import java.net.URL;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+// import org.openqa.selenium.chrome.ChromeDriver;
+// import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -18,55 +23,80 @@ import org.testng.annotations.*;
  * So this has to be changed accordingly
  */
 public class LoginBasicTest {
-	//IMPORTANT: Please download a Chrome driver and set this variable to the full path to the file
-	private final static String CHROME_DRIVER_FULL_PATH = "/Users/leonardolanni/Downloads/chromedriver_113_m1";
-	//private final static String GECKO_DRIVER_FULL_PATH = "/Users/leonardolanni/Downloads/geckodriver";
+	// IMPORTANT: Please download a Chrome driver and set this variable to the full
+	// path to the file
+	// private final static String CHROME_DRIVER_FULL_PATH =
+	// "/Users/leonardolanni/Downloads/chromedriver_113_m1";
+	// private final static String GECKO_DRIVER_FULL_PATH =
+	// "/Users/leonardolanni/Downloads/geckodriver";
 	private WebDriver driver;
 
 	@BeforeTest
 	public void setUp() {
-		System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_FULL_PATH);
-		driver = new ChromeDriver();
-		//System.setProperty("webdriver.gecko.driver", GECKO_DRIVER_FULL_PATH);
-		//driver = new FirefoxDriver();
+		// System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_FULL_PATH);
+		// driver = new ChromeDriver();
+		// System.setProperty("webdriver.gecko.driver", GECKO_DRIVER_FULL_PATH);
+		// driver = new FirefoxDriver();
+
+		try {
+			switch (System.getenv("TEST_BROWSER")) {
+				case "chrom":
+					driver = new RemoteWebDriver(new URL("http://localhost:4444/"), new ChromeOptions());
+					break;
+				case "firefox":
+					driver = new RemoteWebDriver(new URL("http://localhost:4444/"), new FirefoxOptions());
+					break;
+				case "edge":
+					driver = new RemoteWebDriver(new URL("http://localhost:4444/"), new EdgeOptions());
+					break;
+				default:
+					System.out.println("No browser defined");
+					break;
+			}
+		} catch (Exception e) {
+			System.out.println("Error");
+		}
 	}
 
 	@AfterTest
 	public void tearDown() {
-		driver.quit();
+		if (driver != null) {
+			driver.quit();
+		}
 	}
 
 	@Test
 	public void login() {
-		System.out.println("0. Start");
-		
-		System.out.println("1. Open target page");
-		driver.get("https://www.saucedemo.com/");
-		driver.manage().window().setSize(new Dimension(1350, 637));
-		
-		System.out.println("2. Insert username and password");
-		
-		System.out.println(" 2.1 Insert username");
-		driver.findElement(By.id("login_credentials")).click();
-		driver.findElement(By.cssSelector("*[data-test=\"username\"]")).click();
-		driver.findElement(By.cssSelector("*[data-test=\"username\"]")).sendKeys("standard_user");
-		
-		System.out.println(" 2.1 Insert password");
-		driver.findElement(By.cssSelector(".login_password")).click();
-		driver.findElement(By.cssSelector("*[data-test=\"password\"]")).click();
-		driver.findElement(By.cssSelector("*[data-test=\"password\"]")).sendKeys("secret_sauce");
-		
-		System.out.println("3. Click submit to perform login");
-		driver.findElement(By.cssSelector("*[data-test=\"login-button\"]")).click();
+		if (driver != null) {
+			System.out.println("0. Start");
 
-		System.out.println("4. Verify login has been successfully executed");
-		System.out.println(" 4.1 Page title is 'Swag Labs'");
-		Assert.assertEquals(driver.getTitle(), "Swag Labs");
-		
-		System.out.println(" 4.2 Page url contains 'inventory'");
-		Assert.assertEquals(driver.getCurrentUrl().contains("inventory"), true);
-		
-		//Pause the execution for 2 seconds to show the logged in page
+			System.out.println("1. Open target page");
+			driver.get("https://www.saucedemo.com");
+			driver.manage().window().setSize(new Dimension(1350, 637));
+			System.out.println("2. Insert username and password");
+
+			System.out.println(" 2.1 Insert username");
+			driver.findElement(By.id("login_credentials")).click();
+			driver.findElement(By.cssSelector("*[data-test=\"username\"]")).click();
+			driver.findElement(By.cssSelector("*[data-test=\"username\"]")).sendKeys("standard_user");
+
+			System.out.println(" 2.1 Insert password");
+			driver.findElement(By.cssSelector(".login_password")).click();
+			driver.findElement(By.cssSelector("*[data-test=\"password\"]")).click();
+			driver.findElement(By.cssSelector("*[data-test=\"password\"]")).sendKeys("secret_sauce");
+
+			System.out.println("3. Click submit to perform login");
+			driver.findElement(By.cssSelector("*[data-test=\"login-button\"]")).click();
+
+			System.out.println("4. Verify login has been successfully executed");
+			System.out.println(" 4.1 Page title is 'Swag Labs'");
+			Assert.assertEquals(driver.getTitle(), "Swag Labs");
+
+			System.out.println(" 4.2 Page url contains 'inventory'");
+			Assert.assertEquals(driver.getCurrentUrl().contains("inventory"), true);
+		}
+
+		// Pause the execution for 2 seconds to show the logged in page
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
