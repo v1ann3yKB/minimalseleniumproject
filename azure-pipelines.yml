@@ -10,8 +10,13 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- task: JavaToolInstaller@1
+  inputs:
+    versionSpec: '21' # string. Required. JDK version. Default: 8.
+    jdkArchitectureOption: 'x64'
+    jdkSourceOption: 'PreInstalled'
 - script: docker run -d -p 4444:4444 -p 7900:7900 --shm-size="2g" --name browser-container --platform=linux/amd64 selenium/standalone-chrome:latest
-- task: Maven@3
+- task: Maven@4
   inputs:
     mavenPomFile: 'pom.xml'
     mavenOptions: '-Xmx3072m'
